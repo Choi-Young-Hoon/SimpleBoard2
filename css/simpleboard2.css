@@ -1,0 +1,11 @@
+@media (max-width: 1300.00px) {
+    body {
+        min-width: 1300.00px;
+    }
+
+    .min-network-col {
+        min-width: 1000.00px;
+        min-height: 700.00px;
+    }
+}
+
