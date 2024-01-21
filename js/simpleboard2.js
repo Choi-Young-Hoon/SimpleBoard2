@@ -118,8 +118,8 @@ function createLineChart(chartCanvasId, label) {
         data: {
             labels: [], // 시간 레이블
             datasets: [{
-                label: '네트워크 사용량',
-                data: [0], // 데이터 포인트
+                label: label,
+                data: [], // 데이터 포인트
                 backgroundColor: 'rgba(0, 123, 255, 0.5)',
                 borderColor: 'rgba(0, 123, 255, 1)',
                 borderWidth: 1,
@@ -131,13 +131,14 @@ function createLineChart(chartCanvasId, label) {
                     type: 'time',
                     time: {
                         unit: 'second',
-                        stepSize: 20
+                        stepSize: 10
                     }
                 },
                 y: {
                     beginAtZero: true
                 }
-            }
+            },
+            animation: false,
         },
     });
 
@@ -150,13 +151,13 @@ function createDiskCharts(diskChartInfo) {
         var newCanvasID = "disk_chart_" + diskInfos[i].mount_point;
 
         var newPartitionTitleDiv = document.createElement("div");
-        newPartitionTitleDiv.className = "col-sm-6 col-md-4 col-lg-3";
+        newPartitionTitleDiv.className = "col-sm-3 col-md-3 col-lg-3";
         var newPartitionTitle = document.createElement("h2");
         newPartitionTitle.innerHTML = diskInfos[i].mount_point;
         newPartitionTitleDiv.appendChild(newPartitionTitle);
 
         var newCanvasDiv = document.createElement("div");
-        newCanvasDiv.className = "col-sm-6 col-md-4 col-lg-3";
+        newCanvasDiv.className = "col-sm-3 col-md-3 col-lg-3";
         var newCanvas = document.createElement("canvas");
         newCanvas.id = newCanvasID;
         newCanvasDiv.appendChild(newCanvas);
@@ -198,7 +199,7 @@ function drawNetworkChart(networkChart, value) {
     });
 
     // 10개 데이터를 유지
-    if (networkChart.data.labels.length > 20) {
+    if (networkChart.data.labels.length > 10) {
         networkChart.data.labels.shift();
         networkChart.data.datasets.forEach((dataset) => {
             dataset.data.shift();

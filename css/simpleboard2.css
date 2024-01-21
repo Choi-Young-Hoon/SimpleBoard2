@@ -4,8 +4,30 @@
     }
 
     .min-network-col {
-        min-width: 1000.00px;
-        min-height: 700.00px;
+        min-width: 500.00px;
+        min-height: 300.00px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-max-network-col {
+        max-width: 100.00px;
+        max-height: 50.00px;
+    }
+
+    .mobile-max-memory-col {
+        max-width: 50.00px;
+        max-height: 50.00px;
+    }
+
+    .mobile-max-cpu-col {
+        max-width: 50.00px;
+        max-height: 50.00px;
+    }
+
+    .mobile-max-disk-col {
+        max-width: 50.00px;
+        max-height: 50.00px;
     }
 }
 
