@@ -13,7 +13,7 @@
     <title>SimpleBoard2</title>
 </head>
 <body>
-    <div class="container text-center">
+    <div class="container">
         <!-- 상단 타이틀 -->
         <div class="row">
             <div class="display-1 pb-3 mb-3 border-bottom font-weight-bold">SimpleBoard2</div>
@@ -21,8 +21,7 @@
 
         <div class="row border-bottom font-weight-bold">
             <!-- CPU 정보 -->
-            <div class="col-sm-3 col-md-3 col-lg-3">
-                <h2>CPU</h2>
+            <div class="col-sm-3 col-md-3 col-lg-3 cpu_info">
             </div>
             <!-- CPU 차트 -->
             <div class="col-sm-3 col-md-3 col-lg-3">
@@ -30,25 +29,24 @@
             </div>
 
             <!-- 메모리 정보 -->
-            <div class="col-sm-3 col-md-3 col-lg-3">
-                <h2>Memory</h2>
+            <div class="col-sm-3 col-md-3 col-lg-3 memory_info">
             </div>
             <!-- 메모리 차트 -->
             <div class="col-sm-3 col-md-3 col-lg-3">
                 <canvas id="memoryChart"></canvas>
             </div>
+            <br><br>
         </div>
 
-        <br><br>
         <div class="row text-center font-weight-bold">
             <h1>Disk Info</h1>
         </div>
         <br>
         <div class="row disk_charts border-bottom font-weight-bold">
             <!-- 디스크 정보 -->
+            <br><br>
         </div>
 
-        <br><br>
         <div class="row text-center font-weight-bold">
             <h1>Network Info</h1>
         </div>

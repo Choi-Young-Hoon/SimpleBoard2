@@ -151,7 +151,7 @@ function createDiskCharts(diskChartInfo) {
         var newCanvasID = "disk_chart_" + diskInfos[i].mount_point;
 
         var newPartitionTitleDiv = document.createElement("div");
-        newPartitionTitleDiv.className = "col-sm-3 col-md-3 col-lg-3";
+        newPartitionTitleDiv.className = "col-sm-3 col-md-3 col-lg-3 disk_info_" + i;
         var newPartitionTitle = document.createElement("h2");
         newPartitionTitle.innerHTML = diskInfos[i].mount_point;
         newPartitionTitleDiv.appendChild(newPartitionTitle);
@@ -182,10 +182,44 @@ function chartUpdate(chart, usageValue, maxValue) {
 
 function drawCpuChart(cpuInfos) {
     chartUpdate(cpuChart, cpuInfos.usage_percent, 100);
+    updateCpuInfo(cpuInfos);
+}
+
+function updateCpuInfo(cpuInfos) {
+    var cpuInfoDiv = document.querySelector(".cpu_info");
+    var cpuInfo = cpuInfos.cpu_infos[0];
+    var cpuInfoHtml = "<h2>CPU 정보</h2>";
+    cpuInfoHtml += "<br>";
+    cpuInfoHtml += getFontTag("red", "Cores: ") + cpuInfo.cores + " Cores";
+    cpuInfoHtml += "<br>";
+    cpuInfoHtml += getFontTag("red", "GHz: ") + cpuInfo.ghz + " GHz";
+    cpuInfoHtml += "<br>";
+    cpuInfoHtml += getFontTag("red", "Model: ") + cpuInfo.model_name;
+    cpuInfoHtml += "<br>";
+    cpuInfoHtml += getFontTag("red", "VenderID: ") + cpuInfo.vendor_id;
+    cpuInfoHtml += "<br>";
+    cpuInfoHtml += getFontTag("red", "사용률: ") + cpuInfos.usage_percent + "%";
+   cpuInfoDiv.innerHTML = cpuInfoHtml;
 }
 
 function drawMemoryChart(memoryInfo) {
     chartUpdate(memoryChart, memoryInfo.used_percent, 100);
+    updateMemoryInfo(memoryInfo);
+}
+
+function updateMemoryInfo(memoryInfos) {
+    var memoryInfoDiv = document.querySelector(".memory_info");
+    var memoryInfo = memoryInfos;
+    var memoryInfoHtml = "<h2>Memory 정보</h2>";
+    memoryInfoHtml += "<br>";
+    memoryInfoHtml += getFontTag("red", "Total: ") + memoryInfo.total + " GBytes";
+    memoryInfoHtml += "<br>";
+    memoryInfoHtml += getFontTag("red", "Free: ") + memoryInfo.free + " GBytes";
+    memoryInfoHtml += "<br>";
+    memoryInfoHtml += getFontTag("red", "Used: ") + memoryInfo.used + " GBytes";
+    memoryInfoHtml += "<br>";
+    memoryInfoHtml += getFontTag("red", "사용률: ") + memoryInfo.used_percent + "%";
+    memoryInfoDiv.innerHTML = memoryInfoHtml;
 }
 
 function drawNetworkChart(networkChart, value) {
@@ -217,8 +251,27 @@ function drawDiskChart(diskInfo) {
             continue;
         }
         chartUpdate(chart, diskInfos[i].usage_percent, 100);
+        updateDiskInfo(i, diskInfos[i]);
     }
-    //chartUpdate(ChartIndex.DISK, diskInfo.usage, diskInfo.free);
+}
+
+function updateDiskInfo(i, diskInfo) {
+    var diskInfoDiv = document.querySelector(".disk_info_" + i);
+    var diskInfoHtml = "<h2>" + diskInfo.mount_point + " 정보</h2>";
+    diskInfoHtml += "<br>";
+    diskInfoHtml += getFontTag("red", "Device: ") + diskInfo.device;
+    diskInfoHtml += "<br>";
+    diskInfoHtml += getFontTag("red", "Mount Point: ") + diskInfo.mount_point;
+    diskInfoHtml += "<br>";
+    diskInfoHtml += getFontTag("red", "Total: ") + diskInfo.total + " GBytes";
+    diskInfoHtml += "<br>";
+    diskInfoHtml += getFontTag("red", "Free: ") + diskInfo.free + " GBytes";
+    diskInfoHtml += "<br>";
+    diskInfoHtml += getFontTag("red", "Used: ") + diskInfo.used + " GBytes";
+    diskInfoHtml += "<br>";
+    diskInfoHtml += getFontTag("red", "사용률: ") + diskInfo.usage_percent + "%";
+    diskInfoHtml += "<br>";
+    diskInfoDiv.innerHTML = diskInfoHtml;
 }
 
 function findDiskChart(canvasID) {
@@ -228,4 +281,9 @@ function findDiskChart(canvasID) {
         }
     }
     return null;
+}
+
+function getFontTag(color, value) {
+    var fontTag = "<b><font color=\" " + color + "\"></b>" + value + "</font>";
+    return fontTag;
 }
