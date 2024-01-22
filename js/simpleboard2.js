@@ -192,7 +192,7 @@ function updateCpuInfo(cpuInfos) {
     cpuInfoHtml += "<br>";
     cpuInfoHtml += getFontTag("red", "Cores: ") + cpuInfo.cores + " Cores";
     cpuInfoHtml += "<br>";
-    cpuInfoHtml += getFontTag("red", "GHz: ") + cpuInfo.ghz + " GHz";
+    cpuInfoHtml += getFontTag("red", "GHz: ") + cpuInfo.ghz.toFixed(1) + " GHz";
     cpuInfoHtml += "<br>";
     cpuInfoHtml += getFontTag("red", "Model: ") + cpuInfo.model_name;
     cpuInfoHtml += "<br>";
