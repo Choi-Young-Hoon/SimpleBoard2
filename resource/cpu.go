@@ -22,7 +22,7 @@ func NewCPUInfos() *CPUInfos {
 	for _, cpuInterfaceInfo := range cpuInterfaceInfos {
 		cpuInfo := CPUInfo{
 			Cores:     cpuInterfaceInfo.Cores,
-			Ghz:       cpuInterfaceInfo.Mhz,
+			Ghz:       cpuInterfaceInfo.Mhz / 1024,
 			ModelName: cpuInterfaceInfo.ModelName,
 			VendorID:  cpuInterfaceInfo.VendorID,
 		}
